@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-
 export default defineStore("hello", {
   state: () => ({
     isOpen: false,
