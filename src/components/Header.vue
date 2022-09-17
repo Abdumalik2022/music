@@ -25,10 +25,7 @@
               >
             </li>
             <li>
-              <a
-                class="px-2 text-white"
-                href="#"
-                v-on:click.prevent="userStore.signOut"
+              <a class="px-2 text-white" href="#" v-on:click.prevent="signOut"
                 >Logout</a
               >
             </li>
@@ -53,6 +50,12 @@ export default {
   methods: {
     toogleAuthModal() {
       this.isOpen = !this.isOpen;
+    },
+    signOut() {
+      this.userStore.signOut();
+      if (this.$route.name === "manage") {
+        this.$router.push({ name: "home" });
+      }
     },
   },
 };

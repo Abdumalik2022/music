@@ -10,6 +10,10 @@ const routes = [
     path: "/manage",
     name: "manage",
     component: () => import("../components/Manage.vue"),
+    beforeEnter: (to, from, next) => {
+      console.log("Route guard");
+      next();
+    },
   },
   {
     path: "/:catchAll(.*)*",
@@ -24,10 +28,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log("Hello me");
-  console.log("to: ", to);
-  console.log("from: ", from);
-
+  console.log("Global guard");
   next();
 });
 
