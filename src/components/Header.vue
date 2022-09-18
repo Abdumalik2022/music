@@ -25,7 +25,7 @@
               >
             </li>
             <li>
-              <a class="px-2 text-white" href="#" v-on:click.prevent="signOut"
+              <a class="px-2 text-white" href="#" @click.prevent="signOut"
                 >Logout</a
               >
             </li>
