@@ -61,6 +61,8 @@ export default {
         if (file.type !== "audio/mpeg") {
           return;
         }
+
+        // Storing files to firebase-storage.
         const storageRef = storage.ref(); //music-61fcc.appspot.com
         const songRef = storageRef.child(`songs/${file.name}`); // music-61fcc.appspot.com/songs/example.mp3
         const task = songRef.put(file);
@@ -101,12 +103,18 @@ export default {
               comment_count: 0,
             };
             song.url = await task.snapshot.ref.getDownloadURL();
+            // Storing datas of starage to firestore-database.
             await songsCollection.add(song);
           }
         );
       });
       console.log(files);
     },
+  },
+  beforeUnmount() {
+    this.uploads.forEach((upload) => {
+      upload.task.cancel();
+    });
   },
 };
 </script>
