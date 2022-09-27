@@ -3,7 +3,7 @@
   <section class="container mx-auto mt-6">
     <div class="md:grid md:grid-cols-3 md:gap-4">
       <div class="col-span-1">
-        <Upload />
+        <Upload :addSong="addSong" />
       </div>
       <div class="col-span-2">
         <div
@@ -23,6 +23,7 @@
               :song="song"
               :updateSong="updateSong"
               :index="i"
+              :removeSong="removeSong"
             />
           </div>
         </div>
@@ -57,13 +58,7 @@ export default {
       .where("uid", "==", auth.currentUser.uid)
       .get();
 
-    snapshot.forEach((document) => {
-      const song = {
-        ...document.data(),
-        docId: document.id,
-      };
-      this.songs.push(song);
-    });
+    snapshot.forEach(this.addSong);
 
     console.log(this.songs);
   },
@@ -71,6 +66,16 @@ export default {
     updateSong(i, values) {
       this.songs[i].modified_name = values.modified_name;
       this.songs[i].genre = values.genre;
+    },
+    removeSong(i) {
+      this.songs.splice(i, 1);
+    },
+    addSong(document) {
+      const song = {
+        ...document.data(),
+        docId: document.id,
+      };
+      this.songs.push(song);
     },
   },
 };

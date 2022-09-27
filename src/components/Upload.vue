@@ -50,6 +50,7 @@ export default {
       uploads: [],
     };
   },
+  props: ["addSong"],
   methods: {
     upload(event) {
       this.is_dragover = false;
@@ -104,7 +105,12 @@ export default {
             };
             song.url = await task.snapshot.ref.getDownloadURL();
             // Storing datas of starage to firestore-database.
-            await songsCollection.add(song);
+            const songRef = await songsCollection.add(song);
+
+            // Getting the datas from the database to show in the
+            // manage component(parent component)
+            const songSnapshot = await songRef.get();
+            this.addSong(songSnapshot);
           }
         );
       });
