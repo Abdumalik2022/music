@@ -24,6 +24,7 @@
               :updateSong="updateSong"
               :index="i"
               :removeSong="removeSong"
+              :updateUnsavedFlag="updateUnsavedFlag"
             />
           </div>
         </div>
@@ -32,7 +33,6 @@
   </section>
 </template>
 <script>
-import useUserStore from "@/stores/user";
 import Upload from "./Upload.vue";
 import { songsCollection, auth } from "../includes/firebase";
 import CompositionItem from "./CompositionItem.vue";
@@ -42,17 +42,10 @@ export default {
   data() {
     return {
       songs: [],
+      unsavedFlag: false,
     };
   },
   components: { Upload, CompositionItem },
-  beforeRouteEnter(to, from, next) {
-    const store = useUserStore();
-    if (store.userLoggedIn) {
-      next();
-    } else {
-      next({ name: "home" });
-    }
-  },
   async created() {
     const snapshot = await songsCollection
       .where("uid", "==", auth.currentUser.uid)
@@ -77,6 +70,26 @@ export default {
       };
       this.songs.push(song);
     },
+    updateUnsavedFlag(value) {
+      this.unsavedFlag = value;
+    },
+  },
+  beforeRouteLeave(to, from, next) {
+    if (!this.unsavedFlag) {
+      next();
+    } else {
+      const leave = confirm(
+        "You have unsaved changes. Are you shure you want to leave ?"
+      );
+      next(leave);
+    }
+
+    // const store = useUserStore();
+    // if (store.userLoggedIn) {
+    //   next();
+    // } else {
+    //   next({ name: "home" });
+    // }
   },
 };
 </script>

@@ -19,7 +19,7 @@ export default defineStore("user", {
         country: values.country,
       });
 
-      userCred.user.updateProfile({
+      await userCred.user.updateProfile({
         displayName: values.name,
       });
 
