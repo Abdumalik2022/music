@@ -8,6 +8,7 @@
     <div class="container mx-auto flex items-center">
       <!-- Play/Pause Button -->
       <button
+        @click.prevent="newSong(song)"
         type="button"
         class="z-50 h-24 w-24 text-3xl bg-white text-black rounded-full focus:outline-none"
       >
@@ -92,8 +93,9 @@ import {
   auth,
   commentsCollection,
 } from "../includes/firebase";
-import { mapState } from "pinia";
+import { mapState, mapActions } from "pinia";
 import useUserStore from "@/stores/user";
+import usePlayerStore from "@/stores/player";
 
 export default {
   name: "Song",
@@ -123,6 +125,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(usePlayerStore, ["newSong"]),
     async addComment(values, { resetForm }) {
       this.comment_in_submission = true;
       this.comment_show_alert = true;
@@ -158,10 +161,6 @@ export default {
         .where("sid", "==", this.$route.params.id)
         .get();
 
-      if (this.comments.docId === doc.Id) {
-        return;
-      }
-
       snapshots.forEach((doc) => {
         this.comments.push({
           docId: doc.id,
@@ -169,15 +168,19 @@ export default {
         });
       });
     },
+    async getSong() {
+      const docSnapshot = await songsCollection
+        .doc(this.$route.params.id)
+        .get();
+      if (!docSnapshot.exists) {
+        this.$router.push({ name: "home" });
+        return;
+      }
+      this.song = docSnapshot.data();
+    },
   },
   async created() {
-    const docSnapshot = await songsCollection.doc(this.$route.params.id).get();
-    if (!docSnapshot.exists) {
-      this.$router.push({ name: "home" });
-      return;
-    }
-    this.song = docSnapshot.data();
-
+    this.getSong();
     this.getComments();
   },
 };
