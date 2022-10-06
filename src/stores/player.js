@@ -8,6 +8,7 @@ export default defineStore("player", {
     sound: {},
     seek: "00:00",
     duration: "00:00",
+    playerProgress: "0%",
   }),
   actions: {
     async newSong(song) {
@@ -20,12 +21,16 @@ export default defineStore("player", {
       this.sound.play();
 
       this.sound.on("play", () => {
-        requestAnimationFrame(this.progress);
+        requestAnimationFrame(this.progress());
       });
     },
     progress() {
       this.seek = helper.formatDate(this.sound.seek());
       this.duration = helper.formatDate(this.sound.duration());
+      this.playerProgress = `${
+        (this.sound.seek() / this.sound.duration()) * 100
+      }%`;
+
       if (this.sound.playing()) {
         requestAnimationFrame(this.progress);
       }
@@ -39,6 +44,19 @@ export default defineStore("player", {
       } else {
         this.sound.play();
       }
+    },
+    updateSeek(event) {
+      if (!this.sound.playing) {
+        return;
+      }
+
+      const { x, width } = event.currentTarget.getBoundingClientRect();
+      const clickX = event.clientX - x;
+      const percentage = clickX / width;
+      const seconds = this.sound.duration() * percentage;
+
+      this.sound.seek(seconds);
+      this.sound.once("seek", this.progress);
     },
   },
   getters: {
