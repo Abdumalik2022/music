@@ -73,8 +73,8 @@
 <script>
 import { mapState, mapWritableState } from "pinia";
 import useModalStore from "../stores/modal";
-import Login from "./Login.vue";
-import Register from "./Register.vue";
+import Login from "../components/Login.vue";
+import Register from "../components/Register.vue";
 
 export default {
   name: "Auth",

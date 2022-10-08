@@ -4,17 +4,17 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import("../components/Home.vue"),
+    component: () => import("../views/Home.vue"),
   },
   {
     path: "/song/:id",
     name: "song",
-    component: () => import("../components/Song.vue"),
+    component: () => import("../views/Song.vue"),
   },
   {
     path: "/manage",
     name: "manage",
-    component: () => import("../components/Manage.vue"),
+    component: () => import("../views/Manage.vue"),
     beforeEnter: (to, from, next) => {
       console.log("Route guard");
       next();

@@ -35,9 +35,9 @@
   </main>
 </template>
 <script>
-import Upload from "./Upload.vue";
+import Upload from "../components/Upload.vue";
 import { songsCollection, auth } from "../includes/firebase";
-import CompositionItem from "./CompositionItem.vue";
+import CompositionItem from "../components/CompositionItem.vue";
 
 export default {
   name: "Manage",

@@ -11,7 +11,7 @@
   <Auth />
 </template>
 <script>
-import Auth from "./components/Auth.vue";
+import Auth from "./views/Auth.vue";
 import AppHeader from "./components/Header.vue";
 import { mapWritableState } from "pinia";
 import useUserStore from "./stores/user";
@@ -40,10 +40,10 @@ export default {
   opacity: 0;
 }
 .fade-enter-active {
-  transition: all 0.3s linear;
+  transition: all 0.2s linear;
 }
 .fade-leave-to {
-  transition: all 0.3s linear;
+  transition: all 0.2s linear;
   opacity: 0;
 }
 </style>
