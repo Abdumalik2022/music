@@ -1,0 +1,14 @@
+{
+  "header": {
+    "music": "Music",
+    "manage": "Manage",
+    "logout": "Logout",
+    "login_or_register": "Login / Register"
+  },
+  "home": {
+    "listen": "Listen to Great Music!"
+  },
+  "song": {
+    "comment_count": "No comments | 1 comment | {count} comments"
+  }
+}

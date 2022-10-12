@@ -62,7 +62,8 @@ export default {
       this.reg_in_submission = true;
       this.reg_alert_variant = "bg-blue-500";
       this.reg_alert_msg = "Please wait! We are logging you in.";
-
+      // using i18n inside the script blog 👇🏼
+      // this.reg_alert_msg = this.$t("header.login_or_register");
       try {
         await this.authenticate(values);
       } catch (error) {
