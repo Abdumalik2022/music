@@ -7,7 +7,7 @@
         :to="{ name: 'home' }"
         class="text-white font-bold uppercase text-2xl mr-4"
         active-class="no-active"
-        >dadw{{ $t("header.music") }}</router-link
+        >{{ $t("header.music") }}</router-link
       >
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
