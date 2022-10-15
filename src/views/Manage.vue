@@ -11,7 +11,7 @@
             class="bg-white rounded border border-gray-200 relative flex flex-col"
           >
             <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
-              <span class="card-title">My Songs</span>
+              <span class="card-title">{{ $t("manage.mySongs") }}</span>
               <i
                 class="fa fa-compact-disc float-right text-green-400 text-2xl"
               ></i>
@@ -80,9 +80,7 @@ export default {
     if (!this.unsavedFlag) {
       next();
     } else {
-      const leave = confirm(
-        "You have unsaved changes. Are you shure you want to leave ?"
-      );
+      const leave = confirm(this.$t("manage.confirm"));
       next(leave);
     }
 

@@ -29,7 +29,9 @@
         @submit="edit"
       >
         <div class="mb-3">
-          <label class="inline-block mb-2">Song Title</label>
+          <label class="inline-block mb-2">{{
+            $t("composition.songTitle")
+          }}</label>
           <vee-field
             type="text"
             class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
@@ -40,7 +42,7 @@
           <ErrorMessage name="modified_name" class="text-red-600" />
         </div>
         <div class="mb-3">
-          <label class="inline-block mb-2">Genre</label>
+          <label class="inline-block mb-2">{{ $t("composition.genre") }}</label>
           <vee-field
             type="text"
             class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
@@ -55,7 +57,7 @@
           class="py-1.5 px-3 rounded text-white bg-green-600 mr-1.5"
           :disabled="in_submission"
         >
-          Submit
+          {{ $t("buttons.submit") }}
         </button>
         <button
           type="button"
@@ -64,7 +66,7 @@
           @click.prevent="show_alert = false"
           :disabled="in_submission"
         >
-          Go Back
+          {{ $t("buttons.goBack") }}
         </button>
       </vee-form>
     </div>
@@ -113,14 +115,14 @@ export default {
       this.in_submission = true;
       this.show_alert = true;
       this.alert_varian = "bg-blue-500";
-      this.alert_msg = "Please wait! Updading song info.";
+      this.alert_msg = this.$t("composition.alertWait");
 
       try {
         await songsCollection.doc(this.song.docId).update(values);
       } catch (error) {
         this.in_submission = false;
         this.alert_variant = "bg-red-500";
-        this.alert_msg = "Something went wrong! Try again later.";
+        this.alert_msg = this.$t("composition.alertError");
         return;
       }
 
@@ -129,7 +131,7 @@ export default {
 
       this.in_submission = false;
       this.alert_variant = "bg-green-500";
-      this.alert_msg = "Success!";
+      this.alert_msg = this.$t("composition.alertSuccess");
     },
     async deleteSong() {
       // Deleting song from the storage.

@@ -32,8 +32,8 @@ export default {
     defineRule("max", max);
     defineRule("alpha_spaces", alphaSpaces);
     defineRule("email", email);
-    defineRule("max_value", maxVal);
-    defineRule("min_value", minVal);
+    defineRule("max_val", maxVal);
+    defineRule("min_val", minVal);
     defineRule("password_mismatch", confirmed);
     defineRule("excluded", excluded);
     defineRule("country_excluded", excluded);

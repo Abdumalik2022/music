@@ -1,6 +1,7 @@
 <template>
   <li
     class="flex justify-between items-center p-3 pl-6 cursor-pointer transition duration-300 hover:bg-gray-50"
+    @click.prevent="click"
   >
     <div>
       <router-link
@@ -29,5 +30,10 @@
 export default {
   name: "SongItem",
   props: ["song"],
+  methods: {
+    click() {
+      this.$router.push({ name: "song", params: { id: this.song.docId } });
+    },
+  },
 };
 </script>

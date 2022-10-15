@@ -6,9 +6,58 @@
     "login_or_register": "Login / Register"
   },
   "home": {
-    "listen": "Listen to Great Music!"
+    "listen": "Listen to Great Music!",
+    "paragraph": "Listen your favourite musics and enjoy. Upload them to this website. Share with others. Leave comments. To add music first of all you should login or register yourself. After that you can also manage your musics. Do not forget to leave you comments. Enjoy!",
+    "songs": "Songs"
   },
   "song": {
-    "comment_count": "No comments | 1 comment | {count} comments"
+    "comment_count": "No comments | 1 comment | {count} comments",
+    "latest": "Latest",
+    "oldest": "Oldest",
+    "submit": "Submit"
+  },
+  "upload": {
+    "upload": "Upload",
+    "dropFiles": "Drop your files here"
+  },
+  "manage": {
+    "mySongs": "My songs",
+    "confirm": "You have unsaved changes. Are you shure you want to leave ?"
+  },
+  "composition": {
+    "songTitle": "Song Title",
+    "genre": "Genre",
+    "alertWait": "Please wait! Updading song info.",
+    "alertError": "Something went wrong! Try again later.",
+    "alertSuccess": "Success!"
+  },
+  "buttons": {
+    "submit": "Submit",
+    "goBack": "Go back"
+  },
+  "auth": {
+    "yourAccount": "Your Account",
+    "login": "Login",
+    "register": "Register",
+    "submit": "Submit"
+  },
+  "form": {
+    "email": "Email",
+    "password": "Password",
+    "passwordConfirm": "Confirm Password",
+    "name": "Name",
+    "country": "Country",
+    "age": "Age",
+    "tos": "Accept terms of service"
+  },
+  "login": {
+    "alertWait": "Please wait! We are logging you in.",
+    "alertError": "Invalid login details.",
+    "alertSuccess": "Success! You are now logged in."
+  },
+  "register": {
+    "alertWait": "Please wait! Your account is being created.",
+    "alertError": "An uxpected error occured. Please try again later.",
+    "alertSuccess": "Success! Your account has been created."
   }
 }

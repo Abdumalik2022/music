@@ -38,6 +38,7 @@
         <ul class="ml-auto text-white">
           <li class="px-2">
             <a href="#" @click.prevent="changeLocale">{{ currentLocale }}</a>
+            <i class="m-2 font-bold text-xl fa fa-globe"></i>
           </li>
         </ul>
       </div>
